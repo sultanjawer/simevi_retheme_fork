@@ -13,7 +13,6 @@
 }
 </style>
 <div class="row d-flex">
-	
 	<div class="col-sm-12 col-xl-12 mb-2">
 		<form id="fp" action="{{ route('admin.detailbanpem') }}" method="post">
 			{{ csrf_field() }}
@@ -62,10 +61,10 @@
 						{{ $nominaluang += $data->totuang  }}	
 					@endforeach
 				</div>
-				<h3 class="display-4 d-block l-h-n m-0 fw-500">
-					Rp {{ number_format(($nominalyear) / 1000000, 2, ',', '.')}} Jt
+				<h2 class="fs-xxl d-block l-h-n m-0 fw-500">
+					Rp {{ number_format(($nominalyear) / 1, 0, ',', '.')}}
 					<small class="m-0 l-h-n">{{ trans('cruds.detailbanpem.fields.totalamount') }}</small>
-				</h3>
+				</h2>
 			</div>
 			<i class="fal fa-globe-asia position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
 		</div>
@@ -73,17 +72,17 @@
 	<div class="col-sm-4 col-xl-4">
 		<div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
 			<div class="">
-				<h3 class="display-4 d-block l-h-n m-0 fw-500">
+				<h2 class="fs-xxl d-block l-h-n m-0 fw-500">
 					@if ($nominalbrg > 1000000)
-						Rp {{ number_format(($nominalbrg) / 1000000, 2, ',', '.')}} Jt
+						Rp {{ number_format(($nominalbrg) / 1, 0, ',', '.')}}
 					@elseif ($nominalbrg < 1000000)
-						Rp {{ number_format(($nominalbrg) / 1000, 2, ',', '.')}} Jt	
+						Rp {{ number_format(($nominalbrg) / 1, 0, ',', '.')}}
 					@else
 						Rp 0
 					@endif
 					
 					<small class="m-0 l-h-n">{{ trans('cruds.detailbanpem.fields.totalfacilities') }}</small>
-				</h3>
+				</h2>
 			</div>
 			<i class="fal fa-dolly position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
 		</div>
@@ -91,17 +90,17 @@
 	<div class="col-sm-4 col-xl-4">
 		<div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
 			<div class="">
-				<h3 class="display-4 d-block l-h-n m-0 fw-500">
+				<h2 class="fs-xxl d-block l-h-n m-0 fw-500">
 					@if ($nominaluang > 1000000)
-						Rp {{ number_format(($nominaluang) / 1000000, 2, ',', '.')}} Jt
+						Rp {{ number_format(($nominaluang) / 1, 0, ',', '.')}}
 					@elseif ($nominaluang < 1000000)
-						Rp {{ number_format(($nominaluang) / 1000, 2, ',', '.')}} Jt	
+						Rp {{ number_format(($nominaluang) / 1, 0, ',', '.')}}
 					@else
 						Rp 0
 					@endif
 					
 					<small class="m-0 l-h-n">{{ trans('cruds.detailbanpem.fields.totalcash') }}</small>
-				</h3>
+				</h2>
 			</div>
 			<i class="fal fa-coins position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
 		</div>
@@ -110,10 +109,10 @@
 
 <div class="row d-flex">
 	<div class="col-lg-12">
-		<div id="panel-1" class="panel show" data-panel-sortable data-panel-close data-panel-color data-panel-locked data-panel-reset>
+		<div id="panel-1" class="panel show" >
 			<div class="panel-hdr">
 				<h2>
-					<i class="fal fa-map mr-1"> </i> Peta Bantuan
+					<i class="fal fa-map mr-1"> </i> Peta Bantuan Tahun:<span class="ml-1" id="mytitle"></span>
 				</h2>
 				<div class="panel-toolbar">
 					<a hidden data-toggle="tooltip" title data-original-title="Detail" class="btn btn-panel btn-info hover-effect-dot waves-effect waves-themed rounded-circle" type="button" href="{{ route('admin.detailrenja') }}">
@@ -169,7 +168,7 @@
 						<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
 							<div class="text-left ml-2">Kantor Pusat</div>
 							<div id="kppiechart" class="px-3 py-2 d-flex align-items-center">
-								<div  class="js-easy-pie-chart color-primary-600 position-relative d-flex align-items-center justify-content-center" data-percent="45" data-piesize="50" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="0">
+								<div  class="js-easy-pie-chart color-primary-600 position-relative d-flex align-items-center justify-content-center" data-percent="45" data-piesize="70" data-linewidth="5" data-trackcolor="#ccbfdf" data-scalelength="0">
 									<div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark kppie">0</div>
 									{{-- <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
 										<span class="js-percent d-block text-dark kppie">45%</span>
@@ -194,7 +193,7 @@
 						<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
 							<div class="text-left ml-2">Dekonsentrasi</div>
 							<div id="dkpiechart" class="px-3 py-2 d-flex align-items-center">
-								<div class="js-easy-pie-chart color-success-600 position-relative d-flex align-items-center justify-content-center" data-percent="25" data-piesize="50" data-linewidth="5" data-trackcolor="#7aece0" data-scalelength="0">
+								<div class="js-easy-pie-chart color-success-600 position-relative d-flex align-items-center justify-content-center" data-percent="25" data-piesize="70" data-linewidth="5" data-trackcolor="#7aece0" data-scalelength="0">
 									<div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark dkpie">0</div>
 									{{-- <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
 										<span class="js-percent d-block text-dark"></span>
@@ -219,7 +218,7 @@
 						<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
 							<div class="text-left ml-2">TP Provinsi</div>
 							<div id="tppiechart" class="px-3 py-2 d-flex align-items-center">
-								<div  class="js-easy-pie-chart color-warning-600 position-relative d-flex align-items-center justify-content-center" data-percent="15" data-piesize="50" data-linewidth="5" data-trackcolor="#ffebc1" data-scalelength="0">
+								<div  class="js-easy-pie-chart color-warning-600 position-relative d-flex align-items-center justify-content-center" data-percent="15" data-piesize="70" data-linewidth="5" data-trackcolor="#ffebc1" data-scalelength="0">
 									<div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark tppie">0</div>
 									{{-- <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
 										<span class="js-percent d-block text-dark"></span>
@@ -244,7 +243,7 @@
 						<div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
 							<div class="text-left ml-2">TP Kabupaten</div>
 							<div id="tpkpiechart" class="px-3 py-2 d-flex align-items-center">
-								<div  class="js-easy-pie-chart color-danger-600 position-relative d-flex align-items-center justify-content-center" data-percent="10" data-piesize="50" data-linewidth="5" data-trackcolor="#feb7d9" data-scalelength="0">
+								<div  class="js-easy-pie-chart color-danger-600 position-relative d-flex align-items-center justify-content-center" data-percent="10" data-piesize="70" data-linewidth="5" data-trackcolor="#feb7d9" data-scalelength="0">
 									<div class="position-absolute pos-top pos-left pos-right pos-bottom d-flex align-items-center justify-content-center fw-500 fs-xl text-dark tpkpie">0</div>
 									{{-- <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
 										<span class="js-percent d-block text-dark"></span>
@@ -273,7 +272,7 @@
 		<div id="panel-3" class="panel show" data-panel-sortable data-panel-close data-panel-color data-panel-locked data-panel-reset>
 			<div class="panel-hdr">
 				<h2>
-					<span class="mr-1 text-muted">Rincian Data: </span><span class="js-jqvmap-prov"></span>
+					<span class="mr-1 text-muted">Rincian Data: </span><span class="js-jqvmap-prov mr-1">Provinsi</span> - <span id="myyear">Tahun</span>
 				</h2>
 				<div class="panel-toolbar">
 					<a hidden data-toggle="tooltip" title data-original-title="Detail" class="btn btn-panel btn-info hover-effect-dot waves-effect waves-themed rounded-circle" type="button" href="{{ route('admin.detailrenja') }}">
@@ -562,6 +561,29 @@ $(document).ready(function()
 		}
 	});
 });
+</script>
+
+
+<script>
+	let e = document.getElementById('dtYear1');
+	let x = document.getElementById('mytitle');
+	document.addEventListener('DOMContentLoaded',function(){
+		x.innerHTML = e.value;
+		e.addEventListener('change', function(){
+			x.innerHTML=this.value;
+		});
+	});
+</script>
+
+<script>
+	let a = document.getElementById('dtYear1');
+	let b = document.getElementById('myyear');
+	document.addEventListener('DOMContentLoaded',function(){
+		b.innerHTML = e.value;
+		a.addEventListener('change', function(){
+			b.innerHTML=this.value;
+		});
+	});
 </script>
 
 @endsection
